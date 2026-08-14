@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Love Story ❤️</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:Georgia,"Times New Roman",serif;background:#fff7fa;color:#4a2732;overflow-x:hidden}
+#opening{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;background:linear-gradient(rgba(70,10,35,.94),rgba(30,5,20,.97)),var(--hero);background-size:cover;background-position:center;transition:1.2s}
+#opening.hidden{opacity:0;visibility:hidden}
+.opening-content{max-width:750px;padding:30px}.big-heart{font-size:80px;animation:pulse 1.5s infinite}
+.opening-content h1{font-size:clamp(38px,8vw,75px);margin:20px 0}.opening-content p{font-size:20px;line-height:1.8;opacity:.9}
+.open-btn,.yes{margin-top:30px;padding:16px 35px;border:0;border-radius:50px;background:#e75478;color:#fff;font-size:18px;cursor:pointer}
+.music-btn{position:fixed;top:18px;right:18px;width:52px;height:52px;border:0;border-radius:50%;background:#fff;box-shadow:0 5px 25px #0002;cursor:pointer;z-index:5000;font-size:22px}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px 20px;background:linear-gradient(#ffc0cd59,#fff0f5e6),var(--hero);background-size:cover;background-position:center}
+.hero-box{max-width:900px;padding:55px 30px;background:#ffffffc7;backdrop-filter:blur(10px);border-radius:30px;box-shadow:0 20px 70px #5a142c2e}
+.hero-heart{font-size:70px;animation:pulse 1.5s infinite}.hero h1{font-size:clamp(48px,9vw,95px);color:#b83255;margin:15px 0}
+.hero-subtitle{font-size:22px;line-height:1.8}.hero-date{margin-top:20px;color:#8d4054}
+.btn{display:inline-block;margin-top:30px;padding:15px 32px;border-radius:50px;background:#c94f70;color:#fff;text-decoration:none}
+section{padding:90px 20px}.container{max-width:1100px;margin:auto}.title{text-align:center;font-size:45px;color:#a93255;margin-bottom:12px}
+.subtitle{text-align:center;color:#76515b;font-size:18px;margin-bottom:50px}
+.story{background:#fff0f4}.story-box,.letter{max-width:850px;margin:auto;padding:45px;background:#fff;border-radius:25px;box-shadow:0 15px 50px #5a142c1a;font-size:19px;line-height:2}
+.story-box p,.letter p{margin-bottom:20px}.story-box strong{color:#b83255}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}.photo{background:#fff;padding:12px;border-radius:20px;box-shadow:0 12px 35px #5a142c1f;transition:.4s}.photo:hover{transform:translateY(-8px) rotate(1deg)}
+.photo img{width:100%;height:320px;object-fit:cover;border-radius:14px;display:block}.caption{text-align:center;padding:15px 5px 8px;font-size:17px}
+.timeline{max-width:850px;margin:auto;position:relative}.timeline:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;background:#e5a2b5;transform:translateX(-50%)}
+.timeline-item{width:50%;padding:20px 35px;position:relative}.timeline-item:nth-child(odd){left:0;text-align:right}.timeline-item:nth-child(even){left:50%}
+.timeline-card{background:#fff;padding:25px;border-radius:20px;box-shadow:0 10px 30px #5a142c1a}.timeline-card h3{color:#b83255;margin-bottom:10px}
+.counter-section{background:linear-gradient(135deg,#ffdce6,#fff0f4);text-align:center}.counter{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+.counter-box{background:#fff;min-width:115px;padding:25px 15px;border-radius:20px;box-shadow:0 10px 30px #5a142c1a}.number{font-size:34px;font-weight:bold;color:#b83255}.label{color:#76515b;margin-top:5px}
+.moments{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px}.moment{background:#fff;padding:30px;text-align:center;border-radius:22px;box-shadow:0 10px 30px #5a142c1a}.icon{font-size:45px;margin-bottom:15px}.moment h3{color:#b83255;margin-bottom:10px}
+.final{min-height:90vh;display:flex;align-items:center;text-align:center;color:#fff;background:linear-gradient(#37081ee0,#230514f2),var(--final);background-size:cover;background-position:center}.final-box{max-width:850px;margin:auto}.final h2{font-size:clamp(42px,8vw,75px);margin-bottom:25px}.final p{font-size:21px;line-height:1.8}
+.final-message{display:none;margin-top:35px;font-size:28px;line-height:1.8}footer{background:#421f2a;color:#fff;text-align:center;padding:45px 20px}footer span{color:#ff8fa9}
+.fade{opacity:0;transform:translateY(30px);transition:.8s}.fade.visible{opacity:1;transform:none}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.16)}}
+@media(max-width:700px){section{padding:65px 15px}.hero-box{padding:40px 20px}.hero-subtitle{font-size:18px}.story-box,.letter{padding:30px 22px}.timeline:before{left:10px}.timeline-item,.timeline-item:nth-child(even),.timeline-item:nth-child(odd){width:100%;left:0;text-align:left;padding-left:35px}.photo img{height:280px}}
+</style>
+</head>
+<body>
+<div id="opening">
+  <div class="opening-content">
+    <div class="big-heart">❤️</div>
+    <h1 id="openingTitle"></h1>
+    <p id="openingMessage"></p>
+    <button class="open-btn" id="openBtn">Open Your Surprise 💌</button>
+  </div>
+</div>
+
+<button class="music-btn" id="musicBtn">🎵</button>
+<audio id="music" loop></audio>
+
+<header class="hero">
+  <div class="hero-box">
+    <div class="hero-heart">❤️</div>
+    <h1 id="coupleNames"></h1>
+    <p class="hero-subtitle" id="heroSubtitle"></p>
+    <div class="hero-date" id="heroDate"></div>
+    <a class="btn" href="#story" id="beginBtn">Begin Our Story ❤️</a>
+  </div>
+</header>
+
+<main id="mainContent" style="display:none">
+<section class="story fade" id="story"><div class="container">
+  <h2 class="title" id="storyTitle"></h2><p class="subtitle" id="storySubtitle"></p>
+  <div class="story-box" id="storyText"></div>
+</div></section>
+
+<section class="fade"><div class="container">
+  <h2 class="title">Our Memories 📸</h2>
+  <p class="subtitle">Little moments that became our favorite memories.</p>
+  <div class="gallery" id="gallery"></div>
+</div></section>
+
+<section class="fade"><div class="container">
+  <h2 class="title">Our Journey ❤️</h2><p class="subtitle">From one little moment to a beautiful story.</p>
+  <div class="timeline" id="timeline"></div>
+</div></section>
+
+<section class="counter-section fade"><div class="container">
+  <h2 class="title">Time With You ⏳</h2><p class="subtitle">Every second with you is worth remembering.</p>
+  <div class="counter">
+    <div class="counter-box"><div class="number" id="days">0</div><div class="label">Days</div></div>
+    <div class="counter-box"><div class="number" id="hours">0</div><div class="label">Hours</div></div>
+    <div class="counter-box"><div class="number" id="minutes">0</div><div class="label">Minutes</div></div>
+    <div class="counter-box"><div class="number" id="seconds">0</div><div class="label">Seconds</div></div>
+  </div>
+</div></section>
+
+<section class="fade"><div class="container">
+  <h2 class="title" id="letterTitle"></h2>
+  <div class="letter" id="letter"></div>
+</div></section>
+
+<section class="fade"><div class="container">
+  <h2 class="title">The Little Things 💕</h2><p class="subtitle">Because love lives in the little things.</p>
+  <div class="moments" id="moments"></div>
+</div></section>
+
+<section class="final fade"><div class="final-box">
+  <h2 id="finalTitle"></h2><p id="finalText"></p>
+  <button class="yes" id="finalBtn">I Love You ❤️</button>
+  <div class="final-message" id="finalMessage">And I will keep choosing you. Today, tomorrow, and every day after. ❤️</div>
+</div></section>
+</main>
+
+<footer>Made with <span>❤️</span> for <span id="footerNames"></span></footer>
+
+<script src="config.js"></script>
+<script>
+const d = siteData;
+const $ = id => document.getElementById(id);
+
+document.title = `${d.couple.person1} ❤️ ${d.couple.person2} | Our Love Story`;
+document.documentElement.lang = d.language || "en";
+document.body.style.setProperty("--hero", `url("${d.assets.hero}")`);
+document.body.style.setProperty("--final", `url("${d.assets.final}")`);
+
+$("openingTitle").textContent = d.opening.title;
+$("openingMessage").textContent = d.opening.message;
+$("coupleNames").textContent = `${d.couple.person1} & ${d.couple.person2}`;
+$("heroSubtitle").textContent = d.hero.subtitle;
+$("heroDate").innerHTML = `Celebrating our <strong>${d.occasion.number} ${d.occasion.type}</strong><br>${new Date(d.occasion.date + "T00:00:00").toLocaleDateString(undefined,{day:"numeric",month:"long",year:"numeric"})}`;
+$("footerNames").textContent = `${d.couple.person1} & ${d.couple.person2}`;
+
+$("storyTitle").textContent = d.story.title;
+$("storySubtitle").textContent = d.story.subtitle;
+$("storyText").innerHTML = d.story.paragraphs.map((p,i)=>`<p>${i===0 ? p.replace(/(a comment on Facebook)/i,"<strong>$1</strong>") : p}</p>`).join("");
+
+$("gallery").innerHTML = d.gallery.slice(0,10).map(p =>
+  `<div class="photo"><img src="${p.image}" alt="Memory of ${d.couple.person1} and ${d.couple.person2}" loading="lazy"><div class="caption">${p.caption}</div></div>`
+).join("");
+
+$("timeline").innerHTML = d.timeline.map(item =>
+  `<div class="timeline-item"><div class="timeline-card"><h3>${item.icon} ${item.title}</h3><p>${item.text}</p></div></div>`
+).join("");
+
+$("letterTitle").textContent = d.letter.title;
+$("letter").innerHTML = d.letter.paragraphs.map(p=>`<p>${p}</p>`).join("") + `<p class="signature">${d.letter.signature}</p>`;
+
+$("moments").innerHTML = d.moments.map(m =>
+  `<div class="moment"><div class="icon">${m.icon}</div><h3>${m.title}</h3><p>${m.text}</p></div>`
+).join("");
+
+$("finalTitle").textContent = d.final.title;
+$("finalText").textContent = d.final.message;
+
+if(d.music.enabled && d.music.file){
+  $("music").src = d.music.file;
+}else{
+  $("musicBtn").style.display = "none";
+}
+
+$("openBtn").onclick = () => {
+  $("opening").classList.add("hidden");
+  $("mainContent").style.display = "block";
+  document.body.style.overflow = "auto";
+};
+
+$("beginBtn").onclick = e => {
+  e.preventDefault();
+  $("mainContent").style.display = "block";
+  $("story").scrollIntoView({behavior:"smooth"});
+};
+
+let playing = false;
+$("musicBtn").onclick = async () => {
+  const audio = $("music");
+  if(!audio.src) return;
+  if(playing){ audio.pause(); playing=false; $("musicBtn").textContent="🎵"; }
+  else { try{ await audio.play(); playing=true; $("musicBtn").textContent="⏸️"; }catch(e){ alert("Tap again to start the music."); } }
+};
+
+$("finalBtn").onclick = () => {
+  $("finalMessage").style.display = "block";
+  $("finalBtn").style.display = "none";
+};
+
+const start = new Date(d.occasion.date + "T00:00:00");
+function updateCounter(){
+  let diff = Math.max(0, Date.now() - start.getTime());
+  $("days").textContent = Math.floor(diff/86400000);
+  $("hours").textContent = Math.floor(diff/3600000)%24;
+  $("minutes").textContent = Math.floor(diff/60000)%60;
+  $("seconds").textContent = Math.floor(diff/1000)%60;
+}
+updateCounter(); setInterval(updateCounter,1000);
+
+const observer = new IntersectionObserver(entries => entries.forEach(e => {
+  if(e.isIntersecting) e.target.classList.add("visible");
+}), {threshold:.12});
+document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
+
