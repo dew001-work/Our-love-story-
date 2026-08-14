@@ -5,19 +5,19 @@ const siteData = {
   language: "en",
 
   couple: {
-    person1: "Marie",
-    person2: "Dewansh"
+    person1: "issac",
+    person2: "priya"
   },
 
   occasion: {
-    type: "Anniversary",
+    type: "birthday",
     number: "1st",
-    date: "2026-08-09"
+    date: "2026-08-14"
   },
 
   opening: {
     title: "Someone made something special for you...",
-    message: "A little collection of memories, promises, laughter and love... made especially for Marie."
+    message: laughter and love... made especially for Priya."
   },
 
   hero: {
