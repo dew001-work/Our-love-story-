@@ -152,19 +152,22 @@ if(d.music.enabled && d.music.file){
   $("musicBtn").style.display = "none";
 }
 
-$("openBtn").onclick = async () => {
+$("openBtn").onclick = () => {
   $("opening").classList.add("hidden");
   $("mainContent").style.display = "block";
   document.body.style.overflow = "auto";
 
+  const audio = $("music");
+
   if (d.music.enabled && d.music.file) {
-    try {
-      await $("music").play();
-      playing = true;
-      $("musicBtn").textContent = "⏸️";
-    } catch (e) {
-      console.log("Music could not start automatically:", e);
-    }
+    audio.play()
+      .then(() => {
+        playing = true;
+        $("musicBtn").textContent = "⏸️";
+      })
+      .catch((error) => {
+        console.log("Music playback was blocked:", error);
+      });
   }
 };
 
