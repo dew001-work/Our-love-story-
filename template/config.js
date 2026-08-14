@@ -1,23 +1,20 @@
-/* OUR LOVE STORY — TEMPLATE V1
-   For each customer, edit ONLY this file.
-*/
 const siteData = {
   language: "en",
 
   couple: {
-    person1: "issac",
-    person2: "priya"
+    person1: "Rahul",
+    person2: "Ananya"
   },
 
   occasion: {
-    type: "birthday",
-    number: "1st",
+    type: "Birthday",
+    number: "",
     date: "2026-08-14"
   },
 
   opening: {
     title: "Someone made something special for you...",
-    message: laughter and love... made especially for Priya."
+    message: "A special surprise made just for Ananya. ❤️"
   },
 
   hero: {
@@ -88,4 +85,3 @@ const siteData = {
     final: "../images/final.jpg"
   }
 };
-
