@@ -33,7 +33,7 @@ const siteData = {
   },
 
   gallery: [
-    { image: "customer-assets/MM-Celeb-Top10-Most-Popular-Celebrities-On-Social-Media_O8M8L1-1080p30-2_480.webp", caption: "The beginning of us ❤️" },
+    { image: "customer-assets/MM-Celeb-Top10-Most-Popular-Celebrities-On-Social-Media__O8M8L1-1080p30-2_480.webp", caption: "The beginning of us ❤️" },
     { image: "../images/photo2.png", caption: "One of my favorite memories 💕" },
     { image: "../images/photo3.png", caption: "You make everything better 🥰" },
     { image: "../images/photo4.png", caption: "Another beautiful day with you ✨" },
