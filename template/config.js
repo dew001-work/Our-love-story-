@@ -37,7 +37,7 @@ const siteData = {
   { image: "customer-assets/photo2.jpg", caption: "Memory 2 ❤️" },
   { image: "customer-assets/photo3.jpg", caption: "Memory 3 ❤️" },
   { image: "customer-assets/photo4.jpg", caption: "Memory 4 ❤️" },
-  { image: "customer-assets/photo5.jpg", caption: "Memory 5 ❤️" },
+  { image: "customer-assets/photo5.png", caption: "Memory 5 ❤️" },
   { image: "customer-assets/photo6.jpg", caption: "Memory 6 ❤️" },
   { image: "customer-assets/photo7.jpg", caption: "Memory 7 ❤️" },
   { image: "customer-assets/photo8.jpg", caption: "Memory 8 ❤️" },
