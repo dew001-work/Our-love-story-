@@ -33,17 +33,17 @@ const siteData = {
   },
 
   gallery: [
-    { image: "customer-assets/photo1.webp", caption: "The beginning of us ❤️" },
-    { image: "../images/photo2.png", caption: "One of my favorite memories 💕" },
-    { image: "../images/photo3.png", caption: "You make everything better 🥰" },
-    { image: "../images/photo4.png", caption: "Another beautiful day with you ✨" },
-    { image: "../images/photo5.png", caption: "Just you and me ❤️" },
-    { image: "../images/photo6.png", caption: "Happiness looks like us 💗" },
-    { image: "../images/photo7.png", caption: "Another moment I treasure ❤️" },
-    { image: "../images/photo8.png", caption: "Forever one of my favorites 💕" },
-    { image: "../images/photo9.png", caption: "A memory worth keeping forever ✨" },
-    { image: "../images/photo10.png", caption: "365 days of us ❤️" }
-  ],
+  { image: "customer-assets/photo1.webp", caption: "Memory 1 ❤️" },
+  { image: "customer-assets/photo2.jpg", caption: "Memory 2 ❤️" },
+  { image: "customer-assets/photo3.jpg", caption: "Memory 3 ❤️" },
+  { image: "customer-assets/photo4.jpg", caption: "Memory 4 ❤️" },
+  { image: "customer-assets/photo5.jpg", caption: "Memory 5 ❤️" },
+  { image: "customer-assets/photo6.jpg", caption: "Memory 6 ❤️" },
+  { image: "customer-assets/photo7.jpg", caption: "Memory 7 ❤️" },
+  { image: "customer-assets/photo8.jpg", caption: "Memory 8 ❤️" },
+  { image: "customer-assets/photo9.jpg", caption: "Memory 9 ❤️" },
+  { image: "customer-assets/photo10.jpg", caption: "Memory 10 ❤️" }
+],
 
   timeline: [
     { icon: "💬", title: "The Facebook Comment", text: "One simple comment started a conversation that would eventually change our lives." },
