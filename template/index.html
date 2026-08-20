@@ -142,8 +142,7 @@ $("storyText").innerHTML = d.story.paragraphs.map((p,i)=>`<p>${i===0 ? p.replace
 const galleryImages = d.gallery.slice(0,10);
 let currentPhoto = 0;
 
-const galleryImages = d.gallery.slice(0,10);
-let currentPhoto = 0;
+
 
 $("gallery").innerHTML = d.gallery.slice(0,10).map((p,i) =>
   `<div class="photo"><img src="${p.image}" alt="Memory ${i+1}" loading="lazy" onclick="showPhoto(${i})"><div class="caption">${p.caption}</div></div>`
