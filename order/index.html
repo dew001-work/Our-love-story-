@@ -243,3 +243,810 @@ One person
 </option>
 
 <option value="group">
+Multiple people
+</option>
+
+</select>
+
+</div>
+
+
+<!-- PEOPLE -->
+
+<div id="peopleContainer">
+
+<div id="person1Box">
+
+<label id="person1Label">
+Person 1 Name
+</label>
+
+<input
+type="text"
+id="person1"
+name="person1"
+>
+
+</div>
+
+
+<div id="person2Box" class="hidden">
+
+<label>
+Person 2 Name
+</label>
+
+<input
+type="text"
+id="person2"
+name="person2"
+>
+
+</div>
+
+
+<div id="person3Box" class="hidden">
+
+<label>
+Person 3 Name
+</label>
+
+<input
+type="text"
+id="person3"
+name="person3"
+>
+
+</div>
+
+
+<div id="person4Box" class="hidden">
+
+<label>
+Person 4 Name
+</label>
+
+<input
+type="text"
+id="person4"
+name="person4"
+>
+
+</div>
+
+
+<div id="person5Box" class="hidden">
+
+<label>
+Person 5 Name
+</label>
+
+<input
+type="text"
+id="person5"
+name="person5"
+>
+
+</div>
+
+
+<button
+type="button"
+id="addPersonBtn"
+class="add-person-btn hidden"
+>
++ Add another person
+</button>
+
+
+<div
+id="peopleInfo"
+class="people-info"
+>
+Select an occasion to see the number of people included.
+</div>
+
+
+<div
+id="peopleUpgradeMsg"
+class="upgrade-msg hidden"
+>
+You've reached the maximum number of people included in this package. Additional people can be added as an optional paid upgrade.
+</div>
+
+</div>
+
+</div>
+
+
+<!-- WEBSITE CONTENT -->
+
+<div class="card">
+
+<h2>Website Content</h2>
+
+
+<label>Opening Title</label>
+
+<input type="text">
+
+<div class="checkbox-row">
+
+<input type="checkbox">
+
+<span>
+Need help writing this? Get AI Assistance
+</span>
+
+</div>
+
+
+<label>Opening Message</label>
+
+<textarea></textarea>
+
+<div class="checkbox-row">
+
+<input type="checkbox">
+
+<span>
+Need help writing this? Get AI Assistance
+</span>
+
+</div>
+
+
+<label>Main Heading</label>
+
+<input type="text">
+
+<div class="checkbox-row">
+
+<input type="checkbox">
+
+<span>
+Need help writing this? Get AI Assistance
+</span>
+
+</div>
+
+
+<label>
+Short Romantic Line
+<br>
+<small>(The short line shown below the main heading)</small>
+</label>
+
+<input type="text">
+
+<div class="checkbox-row">
+
+<input type="checkbox">
+
+<span>
+Need help writing this? Get AI Assistance
+</span>
+
+</div>
+
+
+<label>Your Story</label>
+
+<textarea
+placeholder="Tell us your story in a few words."
+></textarea>
+
+<div class="checkbox-row">
+
+<input type="checkbox">
+
+<span>
+Need help writing this? Get AI Assistance
+</span>
+
+</div>
+
+
+<label>Final Message</label>
+
+<textarea></textarea>
+
+<div class="checkbox-row">
+
+<input type="checkbox">
+
+<span>
+Need help writing this? Get AI Assistance
+</span>
+
+</div>
+
+</div>
+
+
+<!-- PHOTOS & MUSIC -->
+
+<div class="card">
+
+<h2>Photos & Music</h2>
+
+<label>
+Upload Photos (Maximum 10)
+</label>
+
+<input
+type="file"
+accept="image/*"
+multiple
+>
+
+<label>
+Upload Music
+</label>
+
+<input
+type="file"
+accept="audio/*"
+>
+
+</div>
+
+
+<!-- OPTIONAL UPGRADES -->
+
+<div class="card upgrades">
+
+<h2>Additional Services</h2>
+
+<p>
+Optional upgrades are available at additional charges.
+</p>
+
+<label>
+<input type="checkbox">
+Extra Photos
+</label>
+
+<label>
+<input type="checkbox">
+Video Section
+</label>
+
+<label>
+<input type="checkbox">
+Custom Domain
+</label>
+
+<label>
+<input type="checkbox">
+Website Hosting
+</label>
+
+<label>
+<input type="checkbox">
+Additional Revision
+</label>
+
+<label>
+<input type="checkbox">
+Completely Custom Design
+</label>
+
+</div>
+
+
+<!-- PROMOTIONAL CODE -->
+
+<div class="card">
+
+<h2>Promotional Code</h2>
+
+<div class="apply-row">
+
+<input
+id="coupon"
+placeholder="Enter promotional code"
+>
+
+<button
+type="button"
+class="apply-btn"
+onclick="applyCoupon()"
+>
+Apply
+</button>
+
+</div>
+
+<div
+id="discountMsg"
+class="discount-msg"
+></div>
+
+</div>
+
+
+<!-- ORDER SUMMARY -->
+
+<div class="card">
+
+<h2>Order Summary</h2>
+
+<div class="summary-row">
+
+<span>
+Personalized Website
+</span>
+
+<span>
+₹1,500
+</span>
+
+</div>
+
+
+<div class="summary-row">
+
+<span>
+Promotional Discount
+</span>
+
+<span id="discount">
+₹0
+</span>
+
+</div>
+
+
+<div class="summary-row total">
+
+<span>
+Total
+</span>
+
+<span id="total">
+₹1,500
+</span>
+
+</div>
+
+
+<button
+class="submit-btn"
+type="submit"
+>
+Proceed to Payment
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   OCCASION & PEOPLE SYSTEM
+========================================= */
+
+const occasion =
+document.getElementById("occasion");
+
+const birthdayTypeBox =
+document.getElementById("birthdayTypeBox");
+
+const birthdayType =
+document.getElementById("birthdayType");
+
+const personBoxes = [
+
+document.getElementById("person1Box"),
+
+document.getElementById("person2Box"),
+
+document.getElementById("person3Box"),
+
+document.getElementById("person4Box"),
+
+document.getElementById("person5Box")
+
+];
+
+const personInputs = [
+
+document.getElementById("person1"),
+
+document.getElementById("person2"),
+
+document.getElementById("person3"),
+
+document.getElementById("person4"),
+
+document.getElementById("person5")
+
+];
+
+const addPersonBtn =
+document.getElementById("addPersonBtn");
+
+const peopleInfo =
+document.getElementById("peopleInfo");
+
+const peopleUpgradeMsg =
+document.getElementById("peopleUpgradeMsg");
+
+const person1Label =
+document.getElementById("person1Label");
+
+
+let peopleCount = 1;
+
+let maxPeople = 1;
+
+
+/* UPDATE PEOPLE FIELDS */
+
+function updatePeopleFields(){
+
+personBoxes.forEach((box,index)=>{
+
+box.classList.toggle(
+"hidden",
+index >= peopleCount
+);
+
+});
+
+
+/* ADD PERSON BUTTON */
+
+if(peopleCount < maxPeople){
+
+addPersonBtn.classList.remove("hidden");
+
+}else{
+
+addPersonBtn.classList.add("hidden");
+
+}
+
+
+/* MAXIMUM MESSAGE */
+
+if(
+maxPeople === 5 &&
+peopleCount === 5
+){
+
+peopleUpgradeMsg.classList.remove("hidden");
+
+}else{
+
+peopleUpgradeMsg.classList.add("hidden");
+
+}
+
+}
+
+
+/* RESET PEOPLE */
+
+function resetPeople(){
+
+peopleCount = 1;
+
+personInputs.forEach(input=>{
+
+input.value = "";
+
+});
+
+updatePeopleFields();
+
+}
+
+
+/* OCCASION CHANGE */
+
+occasion.addEventListener(
+"change",
+()=>{
+
+const value =
+occasion.value;
+
+
+/* RESET */
+
+birthdayTypeBox.classList.add(
+"hidden"
+);
+
+
+/* NOTHING SELECTED */
+
+if(!value){
+
+maxPeople = 1;
+
+resetPeople();
+
+peopleInfo.textContent =
+"Select an occasion to see the number of people included.";
+
+return;
+
+}
+
+
+/* ROMANTIC OCCASIONS */
+
+const twoPeople = [
+
+"anniversary",
+
+"proposal",
+
+"valentine",
+
+"wedding"
+
+];
+
+
+if(twoPeople.includes(value)){
+
+maxPeople = 2;
+
+peopleCount = 2;
+
+person1Label.textContent =
+"Person 1 Name";
+
+peopleInfo.textContent =
+"This occasion includes 2 people.";
+
+updatePeopleFields();
+
+return;
+
+}
+
+
+/* BIRTHDAY */
+
+if(value === "birthday"){
+
+birthdayTypeBox.classList.remove(
+"hidden"
+);
+
+
+/* DEFAULT = ONE PERSON */
+
+if(
+birthdayType.value === "single"
+){
+
+maxPeople = 1;
+
+peopleCount = 1;
+
+person1Label.textContent =
+"Name of the Person";
+
+peopleInfo.textContent =
+"Birthday websites can be created for one person. You can also choose multiple people below.";
+
+}else{
+
+maxPeople = 5;
+
+peopleCount = 1;
+
+person1Label.textContent =
+"Person 1 Name";
+
+peopleInfo.textContent =
+"Group birthday websites can include up to 5 people.";
+
+}
+
+updatePeopleFields();
+
+return;
+
+}
+
+
+/* GROUP OCCASIONS */
+
+const groupOccasions = [
+
+"friendship",
+
+"graduation",
+
+"other"
+
+];
+
+
+if(groupOccasions.includes(value)){
+
+maxPeople = 5;
+
+peopleCount = 1;
+
+person1Label.textContent =
+"Person 1 Name";
+
+
+if(value === "friendship"){
+
+peopleInfo.textContent =
+"Friendship websites can include up to 5 people.";
+
+}
+
+else if(value === "graduation"){
+
+peopleInfo.textContent =
+"Graduation websites can include up to 5 people.";
+
+}
+
+else{
+
+peopleInfo.textContent =
+"This occasion can include up to 5 people.";
+
+}
+
+updatePeopleFields();
+
+return;
+
+}
+
+});
+
+
+/* BIRTHDAY TYPE CHANGE */
+
+birthdayType.addEventListener(
+"change",
+()=>{
+
+if(
+birthdayType.value === "group"
+){
+
+maxPeople = 5;
+
+peopleCount = 1;
+
+person1Label.textContent =
+"Person 1 Name";
+
+peopleInfo.textContent =
+"Group birthday websites can include up to 5 people.";
+
+}else{
+
+maxPeople = 1;
+
+peopleCount = 1;
+
+person1Label.textContent =
+"Name of the Person";
+
+peopleInfo.textContent =
+"Birthday websites can be created for one person.";
+
+}
+
+updatePeopleFields();
+
+}
+);
+
+
+/* ADD PERSON */
+
+addPersonBtn.addEventListener(
+"click",
+()=>{
+
+if(
+peopleCount < maxPeople
+){
+
+peopleCount++;
+
+updatePeopleFields();
+
+}
+
+}
+);
+
+
+/* =========================================
+   COUPON SYSTEM
+========================================= */
+
+let discountAmount = 0;
+
+
+function applyCoupon(){
+
+const code =
+document
+.getElementById("coupon")
+.value
+.trim()
+.toUpperCase();
+
+
+if(code === "WELCOME10"){
+
+discountAmount = 150;
+
+document
+.getElementById("discountMsg")
+.textContent =
+"Promotional code applied successfully.";
+
+}else{
+
+discountAmount = 0;
+
+document
+.getElementById("discountMsg")
+.textContent =
+"Invalid promotional code.";
+
+}
+
+
+document
+.getElementById("discount")
+.textContent =
+"−₹" + discountAmount;
+
+
+document
+.getElementById("total")
+.textContent =
+"₹" + (1500 - discountAmount);
+
+}
+
+
+/* =========================================
+   FORM SUBMISSION
+========================================= */
+
+document
+.getElementById("orderForm")
+.addEventListener(
+"submit",
+e=>{
+
+e.preventDefault();
+
+
+alert(
+"Your order has been prepared. Payment integration will be added next."
+);
+
+}
+);
+
+</script>
+
+</body>
+  </html>
