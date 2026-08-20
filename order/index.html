@@ -1,4 +1,4 @@
-{`<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,23 +7,32 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
   background:#f7f7f9;
   color:#222;
 }
+
 .container{
   max-width:850px;
   margin:auto;
   padding:30px 18px 60px;
 }
+
 .header{
   text-align:center;
   margin-bottom:30px;
 }
-.header h1{margin-bottom:8px}
-.header p{color:#666}
+
+.header h1{
+  margin-bottom:8px;
+}
+
+.header p{
+  color:#666;
+}
 
 .card{
   background:#fff;
@@ -75,7 +84,9 @@ textarea{
   width:auto;
 }
 
-.hidden{display:none}
+.hidden{
+  display:none;
+}
 
 .upgrades label{
   font-weight:400;
@@ -100,7 +111,9 @@ textarea{
   gap:10px;
 }
 
-.apply-row input{flex:1}
+.apply-row input{
+  flex:1;
+}
 
 button{
   border:0;
@@ -113,6 +126,13 @@ button{
 .apply-btn{
   background:#333;
   color:#fff;
+}
+
+.add-person-btn{
+  margin-top:16px;
+  background:#333;
+  color:#fff;
+  width:100%;
 }
 
 .submit-btn{
@@ -129,6 +149,26 @@ button{
   margin-top:8px;
   font-size:14px;
 }
+
+.people-info{
+  margin-top:12px;
+  padding:12px;
+  background:#f7f7f9;
+  border-radius:9px;
+  color:#666;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.upgrade-msg{
+  color:#8a5a00;
+  background:#fff8e6;
+  padding:12px;
+  border-radius:9px;
+  margin-top:12px;
+  font-size:14px;
+  line-height:1.5;
+}
 </style>
 </head>
 
@@ -143,32 +183,40 @@ button{
 
 <form id="orderForm">
 
+<!-- CUSTOMER INFORMATION -->
+
 <div class="card">
 <h2>Customer Information</h2>
 
 <label>Full Name</label>
-<input required>
+<input type="text" id="customerName" required>
 
 <label>Email Address</label>
-<input type="email" required>
+<input type="email" id="customerEmail" required>
 
 <label>WhatsApp Number</label>
-<input required>
+<input type="tel" id="whatsapp" required>
 
 <label>Country</label>
-<input required>
+<input type="text" id="country" required>
 
 <label>Preferred Language</label>
-<select>
-<option>English</option>
-<option>Hindi</option>
+<select id="language">
+<option value="English">English</option>
+<option value="Hindi">Hindi</option>
 </select>
+
 </div>
 
+
+<!-- OCCASION & PEOPLE -->
+
 <div class="card">
-<h2>Occasion</h2>
+
+<h2>Occasion & People</h2>
 
 <label>Select Occasion</label>
+
 <select id="occasion" required>
 <option value="">Select</option>
 <option value="birthday">Birthday</option>
@@ -181,163 +229,17 @@ button{
 <option value="other">Other</option>
 </select>
 
-<div id="person1Box">
-<label id="person1Label">Person 1 Name</label>
-<input>
-</div>
 
-<div id="person2Box" class="hidden">
-<label>Person 2 Name</label>
-<input>
-</div>
-</div>
+<!-- BIRTHDAY TYPE -->
 
-<div class="card">
-<h2>Website Content</h2>
+<div id="birthdayTypeBox" class="hidden">
 
-<label>Opening Title</label>
-<input>
-<div class="checkbox-row">
-<input type="checkbox">
-<span>Need help writing this? Get AI Assistance</span>
-</div>
+<label>Who is being celebrated?</label>
 
-<label>Opening Message</label>
-<textarea></textarea>
-<div class="checkbox-row">
-<input type="checkbox">
-<span>Need help writing this? Get AI Assistance</span>
-</div>
+<select id="birthdayType">
 
-<label>Main Heading</label>
-<input>
-<div class="checkbox-row">
-<input type="checkbox">
-<span>Need help writing this? Get AI Assistance</span>
-</div>
+<option value="single">
+One person
+</option>
 
-<label>Short Romantic Line</label>
-<input>
-<div class="checkbox-row">
-<input type="checkbox">
-<span>Need help writing this? Get AI Assistance</span>
-</div>
-
-<label>Your Story</label>
-<textarea placeholder="Tell us your story in a few words."></textarea>
-<div class="checkbox-row">
-<input type="checkbox">
-<span>Need help writing this? Get AI Assistance</span>
-</div>
-
-<label>Final Message</label>
-<textarea></textarea>
-<div class="checkbox-row">
-<input type="checkbox">
-<span>Need help writing this? Get AI Assistance</span>
-</div>
-</div>
-
-<div class="card">
-<h2>Photos & Music</h2>
-
-<label>Upload Photos (Maximum 10)</label>
-<input type="file" accept="image/*" multiple>
-
-<label>Upload Music</label>
-<input type="file" accept="audio/*">
-</div>
-
-<div class="card upgrades">
-<h2>Additional Services</h2>
-<p>Additional charges may apply.</p>
-
-<label><input type="checkbox"> Extra Photos</label>
-<label><input type="checkbox"> Video Section</label>
-<label><input type="checkbox"> Custom Domain</label>
-<label><input type="checkbox"> Website Hosting</label>
-<label><input type="checkbox"> Additional Revision</label>
-<label><input type="checkbox"> Completely Custom Design</label>
-</div>
-
-<div class="card">
-<h2>Promotional Code</h2>
-
-<div class="apply-row">
-<input id="coupon" placeholder="Enter promotional code">
-<button type="button" class="apply-btn" onclick="applyCoupon()">Apply</button>
-</div>
-
-<div id="discountMsg" class="discount-msg"></div>
-</div>
-
-<div class="card">
-<h2>Order Summary</h2>
-
-<div class="summary-row">
-<span>Personalized Website</span>
-<span>₹1,500</span>
-</div>
-
-<div class="summary-row">
-<span>Promotional Discount</span>
-<span id="discount">₹0</span>
-</div>
-
-<div class="summary-row total">
-<span>Total</span>
-<span id="total">₹1,500</span>
-</div>
-
-<button class="submit-btn" type="submit">
-Proceed to Payment
-</button>
-</div>
-
-</form>
-</div>
-
-<script>
-const occasion=document.getElementById("occasion");
-const person2Box=document.getElementById("person2Box");
-const person1Label=document.getElementById("person1Label");
-
-occasion.addEventListener("change",()=>{
- const twoPeople=["anniversary","proposal","valentine","wedding"];
- if(twoPeople.includes(occasion.value)){
-   person2Box.classList.remove("hidden");
-   person1Label.textContent="Person 1 Name";
- }else{
-   person2Box.classList.add("hidden");
-   person1Label.textContent=
-     occasion.value==="birthday"
-     ?"Name of the Person"
-     :"Person 1 Name";
- }
-});
-
-let discountAmount=0;
-
-function applyCoupon(){
- const code=document.getElementById("coupon").value.trim().toUpperCase();
-
- if(code==="WELCOME10"){
-   discountAmount=150;
-   document.getElementById("discountMsg").textContent="Promotional code applied successfully.";
- }else{
-   discountAmount=0;
-   document.getElementById("discountMsg").textContent="Invalid promotional code.";
- }
-
- document.getElementById("discount").textContent="−₹"+discountAmount;
- document.getElementById("total").textContent="₹"+(1500-discountAmount);
-}
-
-document.getElementById("orderForm").addEventListener("submit",e=>{
- e.preventDefault();
- alert("Your order has been prepared. Payment integration will be added next.");
-});
-</script>
-
-</body>
-</html>`}
+<option value="group">
