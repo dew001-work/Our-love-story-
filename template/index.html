@@ -24,7 +24,13 @@ section{padding:90px 20px}.container{max-width:1100px;margin:auto}.title{text-al
 .story{background:#fff0f4}.story-box,.letter{max-width:850px;margin:auto;padding:45px;background:#fff;border-radius:25px;box-shadow:0 15px 50px #5a142c1a;font-size:19px;line-height:2}
 .story-box p,.letter p{margin-bottom:20px}.story-box strong{color:#b83255}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}.photo{background:#fff;padding:12px;border-radius:20px;box-shadow:0 12px 35px #5a142c1f;transition:.4s}.photo:hover{transform:translateY(-8px) rotate(1deg)}
-.photo img{width:100%;height:320px;object-fit:cover;border-radius:14px;display:block}.caption{text-align:center;padding:15px 5px 8px;font-size:17px}
+.photo img{width:100%;height:320px;object-fit:cover;border-radius:14px;display:block}..photo img{cursor:pointer}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:10000;display:none;align-items:center;justify-content:center;padding:20px}
+.lightbox.show{display:flex}
+.lightbox img{max-width:95%;max-height:90%;object-fit:contain;border-radius:10px}
+.lightbox-close{position:absolute;top:15px;right:20px;color:#fff;font-size:40px;cursor:pointer}
+.lightbox-prev,.lightbox-next{position:absolute;top:50%;transform:translateY(-50%);background:#ffffff33;color:#fff;border:0;border-radius:50%;width:50px;height:50px;font-size:25px;cursor:pointer}
+.lightbox-prev{left:15px}.lightbox-next{right:15px}caption{text-align:center;padding:15px 5px 8px;font-size:17px}
 .timeline{max-width:850px;margin:auto;position:relative}.timeline:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;background:#e5a2b5;transform:translateX(-50%)}
 .timeline-item{width:50%;padding:20px 35px;position:relative}.timeline-item:nth-child(odd){left:0;text-align:right}.timeline-item:nth-child(even){left:50%}
 .timeline-card{background:#fff;padding:25px;border-radius:20px;box-shadow:0 10px 30px #5a142c1a}.timeline-card h3{color:#b83255;margin-bottom:10px}
@@ -105,7 +111,12 @@ section{padding:90px 20px}.container{max-width:1100px;margin:auto}.title{text-al
 </div></section>
 </main>
 
-<footer>Made with <span>❤️</span> for <span id="footerNames"></span></footer>
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">×</button>
+  <button class="lightbox-prev" id="lightboxPrev">‹</button>
+  <img id="lightboxImg" src="" alt="Memory">
+  <button class="lightbox-next" id="lightboxNext">›</button>
+</div><footer>Made with <span>❤️</span> for <span id="footerNames"></span></footer>
 
 <script src="config.js"></script>
 <script>
@@ -130,7 +141,29 @@ $("storyText").innerHTML = d.story.paragraphs.map((p,i)=>`<p>${i===0 ? p.replace
 
 $("gallery").innerHTML = d.gallery.slice(0,10).map(p =>
   `<div class="photo"><img src="${p.image}" alt="Memory of ${d.couple.person1} and ${d.couple.person2}" loading="lazy"><div class="caption">${p.caption}</div></div>`
-).join("");
+).join("");const galleryImages = d.gallery.slice(0,10);
+let currentPhoto = 0;
+
+const lightbox = $("lightbox");
+const lightboxImg = $("lightboxImg");
+
+function showPhoto(index){
+  currentPhoto = (index + galleryImages.length) % galleryImages.length;
+  lightboxImg.src = galleryImages[currentPhoto].image;
+  lightbox.classList.add("show");
+}
+
+document.querySelectorAll("#gallery .photo img").forEach((img,index)=>{
+  img.onclick = () => showPhoto(index);
+});
+
+$("lightboxClose").onclick = () => lightbox.classList.remove("show");
+$("lightboxPrev").onclick = () => showPhoto(currentPhoto - 1);
+$("lightboxNext").onclick = () => showPhoto(currentPhoto + 1);
+
+lightbox.onclick = e => {
+  if(e.target === lightbox) lightbox.classList.remove("show");
+};
 
 $("timeline").innerHTML = d.timeline.map(item =>
   `<div class="timeline-item"><div class="timeline-card"><h3>${item.icon} ${item.title}</h3><p>${item.text}</p></div></div>`
