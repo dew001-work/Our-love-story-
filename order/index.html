@@ -1383,12 +1383,8 @@ error
 formMessage.className =
 "error-msg";
 
-formMessage.innerHTML =
-"<strong>DEBUG (temporary):</strong><br><br>" +
-"message: " + (error.message || "none") + "<br>" +
-"details: " + (error.details || "none") + "<br>" +
-"hint: " + (error.hint || "none") + "<br>" +
-"code: " + (error.code || "none");
+formMessage.textContent =
+"Unable to create your order right now. Please try again.";
 
 submitBtn.disabled = false;
 
