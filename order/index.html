@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Order Your Personalized Website</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{box-sizing:border-box}
@@ -67,12 +70,6 @@ textarea{
   resize:vertical;
 }
 
-.ai-help{
-  margin-top:8px;
-  font-size:14px;
-  color:#666;
-}
-
 .checkbox-row{
   display:flex;
   align-items:center;
@@ -123,6 +120,11 @@ button{
   font-size:15px;
 }
 
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
 .apply-btn{
   background:#333;
   color:#fff;
@@ -169,6 +171,26 @@ button{
   font-size:14px;
   line-height:1.5;
 }
+
+.success-msg{
+  color:#16803c;
+  background:#eefaf2;
+  padding:14px;
+  border-radius:9px;
+  margin-top:15px;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.error-msg{
+  color:#a11;
+  background:#fff0f0;
+  padding:14px;
+  border-radius:9px;
+  margin-top:15px;
+  font-size:14px;
+  line-height:1.5;
+}
 </style>
 </head>
 
@@ -186,6 +208,7 @@ button{
 <!-- CUSTOMER INFORMATION -->
 
 <div class="card">
+
 <h2>Customer Information</h2>
 
 <label>Full Name</label>
@@ -201,6 +224,7 @@ button{
 <input type="text" id="country" required>
 
 <label>Preferred Language</label>
+
 <select id="language">
 <option value="English">English</option>
 <option value="Hindi">Hindi</option>
@@ -218,7 +242,9 @@ button{
 <label>Select Occasion</label>
 
 <select id="occasion" required>
+
 <option value="">Select</option>
+
 <option value="birthday">Birthday</option>
 <option value="anniversary">Anniversary</option>
 <option value="proposal">Proposal</option>
@@ -227,6 +253,7 @@ button{
 <option value="wedding">Wedding</option>
 <option value="graduation">Graduation</option>
 <option value="other">Other</option>
+
 </select>
 
 
@@ -238,13 +265,8 @@ button{
 
 <select id="birthdayType">
 
-<option value="single">
-One person
-</option>
-
-<option value="group">
-Multiple people
-</option>
+<option value="single">One person</option>
+<option value="group">Multiple people</option>
 
 </select>
 
@@ -272,9 +294,7 @@ name="person1"
 
 <div id="person2Box" class="hidden">
 
-<label>
-Person 2 Name
-</label>
+<label>Person 2 Name</label>
 
 <input
 type="text"
@@ -287,9 +307,7 @@ name="person2"
 
 <div id="person3Box" class="hidden">
 
-<label>
-Person 3 Name
-</label>
+<label>Person 3 Name</label>
 
 <input
 type="text"
@@ -302,9 +320,7 @@ name="person3"
 
 <div id="person4Box" class="hidden">
 
-<label>
-Person 4 Name
-</label>
+<label>Person 4 Name</label>
 
 <input
 type="text"
@@ -317,9 +333,7 @@ name="person4"
 
 <div id="person5Box" class="hidden">
 
-<label>
-Person 5 Name
-</label>
+<label>Person 5 Name</label>
 
 <input
 type="text"
@@ -333,25 +347,26 @@ name="person5"
 <button
 type="button"
 id="addPersonBtn"
-class="add-person-btn hidden"
->
+class="add-person-btn hidden">
+
 + Add another person
+
 </button>
 
 
-<div
-id="peopleInfo"
-class="people-info"
->
+<div id="peopleInfo" class="people-info">
+
 Select an occasion to see the number of people included.
+
 </div>
 
 
 <div
 id="peopleUpgradeMsg"
-class="upgrade-msg hidden"
->
+class="upgrade-msg hidden">
+
 You've reached the maximum number of people included in this package. Additional people can be added as an optional paid upgrade.
+
 </div>
 
 </div>
@@ -368,11 +383,17 @@ You've reached the maximum number of people included in this package. Additional
 
 <label>Opening Title</label>
 
-<input type="text">
+<input
+type="text"
+id="openingTitle"
+>
 
 <div class="checkbox-row">
 
-<input type="checkbox">
+<input
+type="checkbox"
+id="aiOpeningTitle"
+>
 
 <span>
 Need help writing this? Get AI Assistance
@@ -383,11 +404,16 @@ Need help writing this? Get AI Assistance
 
 <label>Opening Message</label>
 
-<textarea></textarea>
+<textarea
+id="openingMessage"
+></textarea>
 
 <div class="checkbox-row">
 
-<input type="checkbox">
+<input
+type="checkbox"
+id="aiOpeningMessage"
+>
 
 <span>
 Need help writing this? Get AI Assistance
@@ -398,11 +424,17 @@ Need help writing this? Get AI Assistance
 
 <label>Main Heading</label>
 
-<input type="text">
+<input
+type="text"
+id="mainHeading"
+>
 
 <div class="checkbox-row">
 
-<input type="checkbox">
+<input
+type="checkbox"
+id="aiMainHeading"
+>
 
 <span>
 Need help writing this? Get AI Assistance
@@ -412,16 +444,28 @@ Need help writing this? Get AI Assistance
 
 
 <label>
+
 Short Romantic Line
+
 <br>
-<small>(The short line shown below the main heading)</small>
+
+<small>
+(The short line shown below the main heading)
+</small>
+
 </label>
 
-<input type="text">
+<input
+type="text"
+id="shortLine"
+>
 
 <div class="checkbox-row">
 
-<input type="checkbox">
+<input
+type="checkbox"
+id="aiShortLine"
+>
 
 <span>
 Need help writing this? Get AI Assistance
@@ -433,12 +477,16 @@ Need help writing this? Get AI Assistance
 <label>Your Story</label>
 
 <textarea
+id="story"
 placeholder="Tell us your story in a few words."
 ></textarea>
 
 <div class="checkbox-row">
 
-<input type="checkbox">
+<input
+type="checkbox"
+id="aiStory"
+>
 
 <span>
 Need help writing this? Get AI Assistance
@@ -449,11 +497,16 @@ Need help writing this? Get AI Assistance
 
 <label>Final Message</label>
 
-<textarea></textarea>
+<textarea
+id="finalMessage"
+></textarea>
 
 <div class="checkbox-row">
 
-<input type="checkbox">
+<input
+type="checkbox"
+id="aiFinalMessage"
+>
 
 <span>
 Need help writing this? Get AI Assistance
@@ -476,6 +529,7 @@ Upload Photos (Maximum 10)
 
 <input
 type="file"
+id="photoUpload"
 accept="image/*"
 multiple
 >
@@ -486,6 +540,7 @@ Upload Music
 
 <input
 type="file"
+id="musicUpload"
 accept="audio/*"
 >
 
@@ -503,32 +558,50 @@ Optional upgrades are available at additional charges.
 </p>
 
 <label>
-<input type="checkbox">
+<input
+type="checkbox"
+id="upgradePhotos"
+>
 Extra Photos
 </label>
 
 <label>
-<input type="checkbox">
+<input
+type="checkbox"
+id="upgradeVideo"
+>
 Video Section
 </label>
 
 <label>
-<input type="checkbox">
+<input
+type="checkbox"
+id="upgradeDomain"
+>
 Custom Domain
 </label>
 
 <label>
-<input type="checkbox">
+<input
+type="checkbox"
+id="upgradeHosting"
+>
 Website Hosting
 </label>
 
 <label>
-<input type="checkbox">
+<input
+type="checkbox"
+id="upgradeRevision"
+>
 Additional Revision
 </label>
 
 <label>
-<input type="checkbox">
+<input
+type="checkbox"
+id="upgradeCustom"
+>
 Completely Custom Design
 </label>
 
@@ -553,7 +626,9 @@ type="button"
 class="apply-btn"
 onclick="applyCoupon()"
 >
+
 Apply
+
 </button>
 
 </div>
@@ -615,8 +690,15 @@ Total
 class="submit-btn"
 type="submit"
 >
+
 Proceed to Payment
+
 </button>
+
+
+<div
+id="formMessage"
+></div>
 
 </div>
 
@@ -626,6 +708,23 @@ Proceed to Payment
 
 
 <script>
+
+/* =========================================
+   SUPABASE CONNECTION
+========================================= */
+
+const SUPABASE_URL =
+"https://abavdcoyxukoainzecrj.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"YOUR_PUBLISHABLE_KEY";
+
+const supabaseClient =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY
+);
+
 
 /* =========================================
    OCCASION & PEOPLE SYSTEM
@@ -643,13 +742,9 @@ document.getElementById("birthdayType");
 const personBoxes = [
 
 document.getElementById("person1Box"),
-
 document.getElementById("person2Box"),
-
 document.getElementById("person3Box"),
-
 document.getElementById("person4Box"),
-
 document.getElementById("person5Box")
 
 ];
@@ -657,13 +752,9 @@ document.getElementById("person5Box")
 const personInputs = [
 
 document.getElementById("person1"),
-
 document.getElementById("person2"),
-
 document.getElementById("person3"),
-
 document.getElementById("person4"),
-
 document.getElementById("person5")
 
 ];
@@ -682,7 +773,6 @@ document.getElementById("person1Label");
 
 
 let peopleCount = 1;
-
 let maxPeople = 1;
 
 
@@ -700,8 +790,6 @@ index >= peopleCount
 });
 
 
-/* ADD PERSON BUTTON */
-
 if(peopleCount < maxPeople){
 
 addPersonBtn.classList.remove("hidden");
@@ -713,18 +801,20 @@ addPersonBtn.classList.add("hidden");
 }
 
 
-/* MAXIMUM MESSAGE */
-
 if(
 maxPeople === 5 &&
 peopleCount === 5
 ){
 
-peopleUpgradeMsg.classList.remove("hidden");
+peopleUpgradeMsg.classList.remove(
+"hidden"
+);
 
 }else{
 
-peopleUpgradeMsg.classList.add("hidden");
+peopleUpgradeMsg.classList.add(
+"hidden"
+);
 
 }
 
@@ -757,15 +847,10 @@ occasion.addEventListener(
 const value =
 occasion.value;
 
-
-/* RESET */
-
 birthdayTypeBox.classList.add(
 "hidden"
 );
 
-
-/* NOTHING SELECTED */
 
 if(!value){
 
@@ -781,16 +866,13 @@ return;
 }
 
 
-/* ROMANTIC OCCASIONS */
+/* TWO PERSON OCCASIONS */
 
 const twoPeople = [
 
 "anniversary",
-
 "proposal",
-
 "valentine",
-
 "wedding"
 
 ];
@@ -823,9 +905,6 @@ birthdayTypeBox.classList.remove(
 "hidden"
 );
 
-
-/* DEFAULT = ONE PERSON */
-
 if(
 birthdayType.value === "single"
 ){
@@ -838,7 +917,7 @@ person1Label.textContent =
 "Name of the Person";
 
 peopleInfo.textContent =
-"Birthday websites can be created for one person. You can also choose multiple people below.";
+"Birthday websites can be created for one person.";
 
 }else{
 
@@ -866,9 +945,7 @@ return;
 const groupOccasions = [
 
 "friendship",
-
 "graduation",
-
 "other"
 
 ];
@@ -980,6 +1057,8 @@ updatePeopleFields();
 
 let discountAmount = 0;
 
+const BASE_PRICE = 1500;
+
 
 function applyCoupon(){
 
@@ -1006,7 +1085,7 @@ discountAmount = 0;
 
 document
 .getElementById("discountMsg")
-.textContent =
+textContent =
 "Invalid promotional code.";
 
 }
@@ -1021,7 +1100,24 @@ document
 document
 .getElementById("total")
 .textContent =
-"₹" + (1500 - discountAmount);
+"₹" + (BASE_PRICE - discountAmount);
+
+}
+
+
+/* =========================================
+   GENERATE ORDER REFERENCE
+========================================= */
+
+function generateOrderReference(){
+
+return "ORD-" +
+Date.now().toString().slice(-8) +
+"-" +
+Math.random()
+.toString(36)
+.substring(2,5)
+.toUpperCase();
 
 }
 
@@ -1034,18 +1130,310 @@ document
 .getElementById("orderForm")
 .addEventListener(
 "submit",
-e=>{
+async (e)=>{
 
 e.preventDefault();
 
 
-alert(
-"Your order has been prepared. Payment integration will be added next."
-);
+const submitBtn =
+document.querySelector(".submit-btn");
+
+const formMessage =
+document.getElementById("formMessage");
+
+
+submitBtn.disabled = true;
+
+submitBtn.textContent =
+"Creating your order...";
+
+formMessage.innerHTML = "";
+
+
+/* ORDER REFERENCE */
+
+const orderReference =
+generateOrderReference();
+
+
+/* WEBSITE CONTENT */
+
+const websiteContent = {
+
+opening_title:
+document
+.getElementById("openingTitle")
+.value
+.trim(),
+
+opening_message:
+document
+.getElementById("openingMessage")
+.value
+.trim(),
+
+main_heading:
+document
+.getElementById("mainHeading")
+.value
+.trim(),
+
+short_line:
+document
+.getElementById("shortLine")
+.value
+.trim(),
+
+story:
+document
+.getElementById("story")
+.value
+.trim(),
+
+final_message:
+document
+.getElementById("finalMessage")
+.value
+.trim(),
+
+ai_assistance:{
+
+opening_title:
+document
+.getElementById("aiOpeningTitle")
+.checked,
+
+opening_message:
+document
+.getElementById("aiOpeningMessage")
+.checked,
+
+main_heading:
+document
+.getElementById("aiMainHeading")
+.checked,
+
+short_line:
+document
+.getElementById("aiShortLine")
+.checked,
+
+story:
+document
+.getElementById("aiStory")
+.checked,
+
+final_message:
+document
+.getElementById("aiFinalMessage")
+.checked
 
 }
+
+};
+
+
+/* PEOPLE */
+
+const people = {
+
+person1:
+document.getElementById("person1").value.trim(),
+
+person2:
+document.getElementById("person2").value.trim(),
+
+person3:
+document.getElementById("person3").value.trim(),
+
+person4:
+document.getElementById("person4").value.trim(),
+
+person5:
+document.getElementById("person5").value.trim()
+
+};
+
+
+/* OPTIONAL UPGRADES */
+
+const upgrades = {
+
+extra_photos:
+document.getElementById("upgradePhotos").checked,
+
+video_section:
+document.getElementById("upgradeVideo").checked,
+
+custom_domain:
+document.getElementById("upgradeDomain").checked,
+
+website_hosting:
+document.getElementById("upgradeHosting").checked,
+
+additional_revision:
+document.getElementById("upgradeRevision").checked,
+
+completely_custom_design:
+document.getElementById("upgradeCustom").checked
+
+};
+
+
+/* INSERT ORDER */
+
+const { data, error } =
+await supabaseClient
+.from("Order")
+.insert([{
+
+customer_name:
+document
+.getElementById("customerName")
+.value
+.trim(),
+
+email:
+document
+.getElementById("customerEmail")
+.value
+.trim(),
+
+whatsapp:
+document
+.getElementById("whatsapp")
+.value
+.trim(),
+
+country:
+document
+.getElementById("country")
+.value
+.trim(),
+
+language:
+document
+.getElementById("language")
+.value,
+
+occasion:
+document
+.getElementById("occasion")
+.value,
+
+person1_name:
+people.person1,
+
+person2_name:
+people.person2,
+
+person3_name:
+people.person3,
+
+person4_name:
+people.person4,
+
+person5_name:
+people.person5,
+
+website_content:
+websiteContent,
+
+coupon_code:
+document
+.getElementById("coupon")
+.value
+.trim()
+.toUpperCase(),
+
+discount_amount:
+discountAmount,
+
+total_amount:
+BASE_PRICE - discountAmount,
+
+payment_status:
+"pending",
+
+payment_reference:
+"",
+
+order_status:
+"new",
+
+order_reference:
+orderReference,
+
+created_at:
+new Date().toISOString()
+
+}])
+.select();
+
+
+/* ERROR */
+
+if(error){
+
+console.error(
+"Supabase order error:",
+error
 );
 
+formMessage.className =
+"error-msg";
+
+formMessage.textContent =
+"Unable to create your order right now. Please try again.";
+
+submitBtn.disabled = false;
+
+submitBtn.textContent =
+"Proceed to Payment";
+
+return;
+
+}
+
+
+/* SUCCESS */
+
+formMessage.className =
+"success-msg";
+
+formMessage.innerHTML =
+"Your order has been created successfully.<br><br>" +
+"<strong>Order Reference:</strong> " +
+orderReference +
+"<br><br>" +
+"Payment gateway will be connected next.";
+
+
+/*
+PAYMENT GATEWAY WILL BE ADDED HERE.
+
+The intended flow is:
+
+Customer fills form
+↓
+Order saved in Supabase
+↓
+Customer goes directly to payment gateway
+↓
+Customer completes payment
+↓
+Payment status is verified
+↓
+Dashboard marks order as paid
+*/
+
+
+submitBtn.disabled = false;
+
+submitBtn.textContent =
+"Proceed to Payment";
+
+});
 </script>
 
 </body>
