@@ -1355,8 +1355,11 @@ musicError
 formMessage.className =
 "error-msg";
 
-formMessage.textContent =
-"Unable to upload music right now. Please try again.";
+formMessage.innerHTML =
+"<strong>DEBUG (temporary):</strong><br><br>" +
+"message: " + (musicError.message || "none") + "<br>" +
+"statusCode: " + (musicError.statusCode || "none") + "<br>" +
+"error: " + (musicError.error || "none");
 
 submitBtn.disabled = false;
 
