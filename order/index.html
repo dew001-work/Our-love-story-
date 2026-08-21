@@ -1280,6 +1280,111 @@ document.getElementById("upgradeCustom").checked
 };
 
 
+/* UPLOAD PHOTOS & MUSIC */
+
+formMessage.innerHTML = "Uploading your photos and music...";
+
+const photoFiles =
+document.getElementById("photoUpload").files;
+
+const musicFiles =
+document.getElementById("musicUpload").files;
+
+const photoPaths = [];
+let musicPath = "";
+
+for (let i = 0; i < photoFiles.length; i++){
+
+const file = photoFiles[i];
+
+const filePath =
+orderReference + "/photos/" + i + "-" + file.name;
+
+const { error: photoError } =
+await supabaseClient
+.storage
+.from("customer-assets")
+.upload(filePath, file);
+
+if (photoError){
+
+console.error(
+"Photo upload error:",
+photoError
+);
+
+formMessage.className =
+"error-msg";
+
+formMessage.textContent =
+"Unable to upload photos right now. Please try again.";
+
+submitBtn.disabled = false;
+
+submitBtn.textContent =
+"Proceed to Payment";
+
+return;
+
+}
+
+photoPaths.push(filePath);
+
+}
+
+if (musicFiles.length > 0){
+
+const file = musicFiles[0];
+
+const filePath =
+orderReference + "/music/" + file.name;
+
+const { error: musicError } =
+await supabaseClient
+.storage
+.from("customer-assets")
+.upload(filePath, file);
+
+if (musicError){
+
+console.error(
+"Music upload error:",
+musicError
+);
+
+formMessage.className =
+"error-msg";
+
+formMessage.textContent =
+"Unable to upload music right now. Please try again.";
+
+submitBtn.disabled = false;
+
+submitBtn.textContent =
+"Proceed to Payment";
+
+return;
+
+}
+
+musicPath = filePath;
+
+}
+
+websiteContent.media = {
+
+photo_paths: photoPaths,
+
+music_path: musicPath
+
+};
+
+formMessage.innerHTML = "Creating your order...";
+
+
+/* INSERT ORDER */
+
+
 /* INSERT ORDER */
 
 const { data, error } =
